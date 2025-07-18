@@ -40,9 +40,13 @@ export const metadata: Metadata = {
   title: "Badger State Solutions",
   description:
     "Badger State Solutions is a business management and consulting firm dedicated to helping organizations streamline operations, improve performance, and achieve sustainable growth.",
-  icons: {
-    icon: "/icons/logo1.png",
-  },
+  icons: [
+    { rel: 'icon', type: 'image/png', sizes: '96x96', url: '/favicon-96x96.png' },
+    { rel: 'icon', type: 'image/svg+xml', url: '/favicon.svg' },
+    { rel: 'shortcut icon', url: '/favicon.ico' },
+    { rel: 'apple-touch-icon', sizes: '180x180', url: '/apple-touch-icon.png' },
+  ],
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
@@ -56,6 +60,15 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${cormorantItalic.variable}`}
     >
+      <head>
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0B0D17" />
+        <meta name="keywords" content="business consulting, operations, growth strategy, Badger State Solutions" />
+        <meta name="author" content="Badger State Solutions" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Badger State Solutions" />
+      </head>
       <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="system">
           {children}

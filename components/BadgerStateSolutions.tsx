@@ -839,8 +839,8 @@ const BadgerStateSolutions = () => {
                                     <Image
                                         src="/icons/startup.png"
                                         alt="Mail Icon"
-                                        width={16}
-                                        height={16}
+                                        width={40}
+                                        height={40}
                                         className="w-10 h-10 relative z-10 mr-4"
                                     />
                                     <span className="relative z-10">
@@ -856,13 +856,12 @@ const BadgerStateSolutions = () => {
 
                                 <button className="flex group relative overflow-hidden bg-white/10 backdrop-blur-md text-white px-10 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 rounded-2xl text-lg sm:text-xl lg:text-2xl font-bold hover:shadow-2xl hover:shadow-white/10 hover:scale-105 transition-all duration-300 border border-white/20 hover:bg-white/20 w-full sm:w-auto tracking-tight">
                                     <Image
-                                        src="/icons/learning.png"
-                                        alt="Mail Icon"
-                                        width={16}
-                                        height={16}
-                                        className="w-10 h-10 mr-4 z-10">
-
-                                    </Image>
+                                        src="/icons/bookwhite.png"
+                                        alt="Learn Icon"
+                                        width={40}
+                                        height={40}
+                                        className="w-10 h-10 mr-4 z-10"
+                                    />
                                     <span className="flex space-x-2 items-center justify-center relative z-10">
 
 
