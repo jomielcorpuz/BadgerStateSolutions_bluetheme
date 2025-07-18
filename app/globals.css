@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Luxury Typography Shadows */
+  --luxury-text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  --luxury-text-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
+  --luxury-text-shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.18), 0 6px 12px rgba(0, 0, 0, 0.12);
+  @keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  25% {
+    background-position: 50% 100%;
+    transform: rotate(5deg) scale(1.1);
+    }
+  50% {
+    background-position: 100% 50%;
+    transform: rotate(-3deg) scale(0.95);
+    }
+  75% {
+    background-position: 50% 0%;
+    transform: rotate(3deg) scale(1.05);
+    }
+  100% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  }
+  
+  /* Luxury Hero Typography */
+  .luxury-hero {
+    text-shadow: var(--luxury-text-shadow-xl);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+  }
+  
+  .luxury-text {
+     text-shadow: var(--luxury-text-shadow);
+     color: #1a1a1a;
+     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  }
+  
+  /* Modern Hero Typography */
+  .modern-hero-text {
+    font-weight: 800;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    letter-spacing: -0.05em;
+    position: relative;
+  }
+  
+  .modern-hero-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+    border-radius: 8px;
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modern-hero-text:hover::before {
+    opacity: 1;
+  }
+}
+
+@layer base {
+  :root {
+    /* Badger-inspired Color Scheme: Charcoal, Beige, and Golden */
+    --background: 45 15% 96%; /* Warm off-white background */
+    --foreground: 0 0% 18%; /* Charcoal text */
+    --card: 45 20% 98%; /* Light beige cards */
+    --card-foreground: 0 0% 18%; /* Charcoal card text */
+    --popover: 45 20% 98%; /* Light beige popover */
+    --popover-foreground: 0 0% 18%; /* Charcoal popover text */
+    --primary: 45 65% 55%; /* Golden brown primary */
+    --primary-foreground: 45 15% 96%; /* Light text on golden */
+    --secondary: 35 25% 85%; /* Light tan secondary */
+    --secondary-foreground: 0 0% 18%; /* Charcoal text on tan */
+    --muted: 35 20% 90%; /* Very light beige muted */
+    --muted-foreground: 35 15% 40%; /* Medium brown muted text */
+    --accent: 42 75% 65%; /* Warm golden accent */
+    --accent-foreground: 0 0% 18%; /* Charcoal text on golden */
+    --destructive: 0 84.2% 60.2%; /* Red for destructive actions */
+    --destructive-foreground: 0 0% 98%; /* White text on red */
+    --border: 35 20% 82%; /* Light tan border */
+    --input: 35 15% 92%; /* Very light beige input background */
+    --ring: 45 65% 55%; /* Golden brown focus ring */
+    --chart-1: 45 65% 55%; /* Golden brown */
+    --chart-2: 35 45% 45%; /* Medium brown */
+    --chart-3: 42 75% 65%; /* Warm golden */
+    --chart-4: 35 35% 60%; /* Light brown */
+    --chart-5: 45 55% 75%; /* Light golden */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark badger theme with charcoal and warm accents */
+    --background: 0 0% 8%; /* Deep charcoal background */
+    --foreground: 45 15% 92%; /* Warm off-white text */
+    --card: 0 0% 12%; /* Dark charcoal cards */
+    --card-foreground: 45 15% 92%; /* Warm off-white card text */
+    --popover: 0 0% 12%; /* Dark charcoal popover */
+    --popover-foreground: 45 15% 92%; /* Warm off-white popover text */
+    --primary: 42 75% 65%; /* Bright golden primary */
+    --primary-foreground: 0 0% 8%; /* Dark text on golden */
+    --secondary: 35 15% 18%; /* Dark brown secondary */
+    --secondary-foreground: 45 15% 92%; /* Light text on dark brown */
+    --muted: 35 10% 20%; /* Dark muted brown */
+    --muted-foreground: 35 20% 65%; /* Light brown muted text */
+    --accent: 45 65% 55%; /* Golden brown accent */
+    --accent-foreground: 45 15% 96%; /* Light text on golden accent */
+    --destructive: 0 62.8% 30.6%; /* Dark red for destructive actions */
+    --destructive-foreground: 0 0% 98%; /* White text on red */
+    --border: 35 10% 22%; /* Dark brown border */
+    --input: 35 8% 18%; /* Dark brown input background */
+    --ring: 42 75% 65%; /* Bright golden focus ring */
+    --chart-1: 42 75% 65%; /* Bright golden */
+    --chart-2: 35 45% 55%; /* Medium brown */
+    --chart-3: 45 65% 55%; /* Golden brown */
+    --chart-4: 35 35% 70%; /* Light brown */
+    --chart-5: 45 55% 75%; /* Light golden */
+  }
+  .theme {
+    --animate-aurora: aurora 8s ease-in-out infinite alternate;
+  }
+}
+
+html {
+  overflow-y: scroll;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: var(--font-geist-sans);
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
