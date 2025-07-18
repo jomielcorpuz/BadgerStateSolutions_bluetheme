@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect, useRef, useState } from "react";
 import {
     ArrowRight,
     Sparkles,
@@ -10,7 +11,20 @@ import { AuroraText } from "@/components/magicui/aurora-text";
 
 
 const BadgerStateSolutions = () => {
+    const [footerVisible, setFooterVisible] = useState(false);
+    const footerRef = useRef<HTMLDivElement>(null);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!footerRef.current) return;
+            const rect = footerRef.current.getBoundingClientRect();
+            // If the footer is within 200px of the viewport bottom, trigger the effect
+            setFooterVisible(rect.top < window.innerHeight - 200);
+        };
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
 
 
@@ -18,43 +32,56 @@ const BadgerStateSolutions = () => {
         <div className="min-h-screen bg-white overflow-x-hidden">
 
             {/* Modern Header */}
-            <header className="fixed top-0 w-full z-50 backdrop-blur shadow-xs border-b border-white/10 saturate-100 ">
+            <header
+                className={`fixed top-0 w-full z-50 shadow-xs border-b border-white/10 saturate-100 transition-colors duration-300
+                    ${footerVisible
+                        ? "bg-blue-900/95 backdrop-blur text-white"
+                        : "backdrop-blur bg-white/30 text-blue-900"
+                    }`}
+            >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-4">
                         <div className="flex items-center space-x-2">
                             <Image
-                                src="/logo.png"
+                                src="/logo.svg"
                                 alt="Badger State Solutions Logo"
-                                width={40}
-                                height={40}
+                                width={45}
+                                height={45}
                                 className=""
                             />
-                            <span className="text-2xl font-bold text-blue-900">
+                            <span className="text-2xl font-bold header-text">
                                 Badger State Solutions
                             </span>
                         </div>
                         <nav className="hidden md:flex items-center space-x-8">
                             <a
                                 href="#about"
-                                className="text-blue-800 hover:text-blue-600 transition-colors font-medium"
+                                className="header-link font-medium"
                             >
                                 About
                             </a>
                             <a
                                 href="#services"
-                                className="text-blue-800 hover:text-blue-600 transition-colors font-medium"
+                                className="header-link font-medium"
                             >
                                 Services
                             </a>
                             <a
                                 href="#contact"
-                                className="text-blue-800 hover:text-blue-600 transition-colors font-medium"
+                                className="header-link font-medium"
                             >
                                 Contact
                             </a>
-                            <button className="bg-gradient-to-r from-blue-700 to-blue-500 text-white px-6 py-2.5 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
-                                Get Started
-                            </button>
+
+                            <a
+                                href="#start"
+                                className="header-link "
+                            >
+                                <button className="bg-gradient-to-r from-blue-700 to-blue-500 text-white px-6 py-2.5 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium">
+                                    Get Started
+                                </button>
+                            </a>
+
                         </nav>
                     </div>
                 </div>
@@ -122,7 +149,7 @@ const BadgerStateSolutions = () => {
                         delay={130}
                         enableScrollUp={true}
                     >
-                        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-700/90 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed ">
+                        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-700/90 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed font-light">
                             Partner with Badger State Solutions to unlock your organization&apos;s potential, streamline operations, and achieve lasting growth.
                         </p>
                     </AnimatedContent>
@@ -139,22 +166,34 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16">
-                            <button
-                                className="group relative overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-500 border border-blue-500/20 backdrop-blur-sm w-full sm:w-auto min-w-[200px]"
+                            <a
+                                href="mailto:info@badgerstatesolutions.com"
+                                className="w-full sm:w-auto"
                             >
-                                <span className="relative z-10 flex items-center justify-center gap-3">
-                                    <span>Contact Us</span>
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                                </span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            </button>
-                            <button className="group relative overflow-hidden bg-white/80 backdrop-blur-sm text-blue-900 px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-500 border-2 border-blue-300/50 hover:border-blue-400/70 w-full sm:w-auto min-w-[200px]">
-                                <span className="relative z-10 flex items-center justify-center gap-3">
-                                    <span>Learn More</span>
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                                </span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            </button>
+                                <button
+                                    className="group relative overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02] transition-all duration-500 border border-blue-500/20 backdrop-blur-sm w-full sm:w-auto min-w-[200px]"
+                                >
+                                    <span className="relative z-10 flex items-center justify-center gap-3">
+                                        <span>Contact Us</span>
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </button>
+                            </a>
+
+                            <a
+                                href="mailto:info@badgerstatesolutions.com"
+                                className="w-full sm:w-auto"
+                            >
+                                <button className="group relative overflow-hidden bg-white/80 backdrop-blur-sm text-blue-900 px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02] transition-all duration-500 border-2 border-blue-300/50 hover:border-blue-400/70 w-full sm:w-auto min-w-[200px]">
+                                    <span className="relative z-10 flex items-center justify-center gap-3">
+                                        <span>Learn More</span>
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </button>
+                            </a>
+
                         </div>
                     </AnimatedContent>
 
@@ -210,7 +249,7 @@ const BadgerStateSolutions = () => {
                             <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-800 mb-8 tracking-tight">
                                 Who We Are
                             </h3>
-                            <p className="text-xl sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto ">
+                            <p className="text-xl sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto font-light leading-relaxed">
                                 At Badger State Solutions, we are a business management and consulting firm dedicated to helping organizations thrive.
                             </p>
                         </div>
@@ -235,7 +274,7 @@ const BadgerStateSolutions = () => {
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/strategy.png"
+                                            src="/icons/target1.png"
                                             alt="Strategy Icon"
                                             width={75}
                                             height={75}
@@ -248,7 +287,7 @@ const BadgerStateSolutions = () => {
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/operation.png"
+                                            src="/icons/lightning2.png"
                                             alt="Performance Icon"
                                             width={75}
                                             height={75}
@@ -261,7 +300,7 @@ const BadgerStateSolutions = () => {
                                 <div className="group justify-center items-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex  justify-center items-center text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/rising.png"
+                                            src="/icons/chartrising.png"
                                             alt="Growth Icon"
                                             width={75}
                                             height={75}
@@ -287,12 +326,12 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="max-w-5xl mx-auto text-center">
-                            <p className="text-2xl text-blue-700 mb-6 leading-relaxed">
+                            <p className="text-2xl text-blue-700 mb-6 leading-relaxed font-light">
                                 With tailored strategies, operational support, and expert guidance, we help businesses across a wide range of industries enhance efficiency, navigate challenges, and scale with
                                 <br></br>
                                 confidence.
                             </p>
-                            <p className="text-2xl text-blue-700 leading-relaxed">
+                            <p className="text-2xl text-blue-700 leading-relaxed font-light">
                                 Whether you&apos;re a small startup or an established enterprise, Badger State Solutions provides the insight and support you need to succeed.
                             </p>
                         </div>
@@ -317,7 +356,7 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="text-center mb-16 sm:mb-20">
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-blue-900 mb-6 tracking-tight">
+                            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-blue-800 mb-6 tracking-tight">
                                 <span className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 bg-clip-text text-transparent">Our</span> Services
                             </h2>
                             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto mb-8"></div>
@@ -342,7 +381,7 @@ const BadgerStateSolutions = () => {
                             <div className="group bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl p-8 lg:p-10 hover:shadow-2xl hover:border-blue-300/70 transition-all duration-300 hover:-translate-y-2 h-full">
                                 <div className="text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <Image
-                                        src="/icons/strategy.png"
+                                        src="/icons/target.png"
                                         alt="Strategy Icon"
                                         width={75}
                                         height={75}
@@ -369,7 +408,7 @@ const BadgerStateSolutions = () => {
                             <div className="group bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl p-8 lg:p-10 hover:shadow-2xl hover:border-blue-300/70 transition-all duration-300 hover:-translate-y-2 h-full">
                                 <div className="text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <Image
-                                        src="/icons/operation.png"
+                                        src="/icons/lightning2.png"
                                         alt="Operation Icon"
                                         width={75}
                                         height={75}
@@ -396,7 +435,7 @@ const BadgerStateSolutions = () => {
                             <div className="group bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl p-8 lg:p-10 hover:shadow-2xl hover:border-blue-300/70 transition-all duration-300 hover:-translate-y-2 h-full">
                                 <div className="text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <Image
-                                        src="/icons/rising.png"
+                                        src="/icons/chartrising.png"
                                         alt="Performance Icon"
                                         width={75}
                                         height={75}
@@ -423,7 +462,7 @@ const BadgerStateSolutions = () => {
                             <div className="group bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl p-8 lg:p-10 hover:shadow-2xl hover:border-blue-300/70 transition-all duration-300 hover:-translate-y-2 h-full">
                                 <div className="text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <Image
-                                        src="/icons/growth.png"
+                                        src="/icons/startup.png"
                                         alt="Growth Icon"
                                         width={75}
                                         height={75}
@@ -440,7 +479,7 @@ const BadgerStateSolutions = () => {
             </section>
 
             {/* Our Approach Section */}
-            <section className="py-24 sm:py-32 bg-gradient-to-b from-white via-amber-50/20 to-white">
+            <section className="py-24 sm:py-32 bg-gradient-to-b from-white via-blue-50/10 to-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <AnimatedContent
                         distance={100}
@@ -454,10 +493,10 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="text-center mb-16 sm:mb-20">
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-amber-900 mb-6 tracking-tight">
-                                <span className="bg-gradient-to-r from-amber-800 via-amber-600 to-yellow-600 bg-clip-text text-transparent">Our</span> Approach
+                            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-blue-900 mb-6 tracking-tight">
+                                <span className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-600 bg-clip-text text-transparent">Our</span> Approach
                             </h2>
-                            <div className="w-24 h-1 bg-gradient-to-r from-amber-600 to-yellow-600 mx-auto mb-8"></div>
+                            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-600 mx-auto mb-8"></div>
                         </div>
                     </AnimatedContent>
 
@@ -473,10 +512,10 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="text-center mb-12">
-                            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-800 mb-8 tracking-tight">
+                            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-800 mb-8 tracking-tight">
                                 How We Work
                             </h3>
-                            <p className="text-xl sm:text-2xl lg:text-3xl text-amber-700/90 text-center mb-12 max-w-5xl mx-auto leading-relaxed font-light">
+                            <p className="text-xl sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto leading-relaxed font-light">
                                 Our proven methodology ensures consistent results and sustainable growth for your business.
                             </p>
                         </div>
@@ -493,15 +532,15 @@ const BadgerStateSolutions = () => {
                         delay={200}
                         enableScrollUp={true}
                     >
-                        <div className="bg-gradient-to-r from-amber-50/50 to-yellow-50/30 backdrop-blur-sm border border-amber-200/50 rounded-xl p-8 lg:p-12 mb-8">
-                            <h4 className="text-2xl lg:text-3xl font-bold text-amber-800 mb-8 lg:mb-10 text-center tracking-tight">
+                        <div className="bg-gradient-to-r from-blue-50/50 to-blue-50/30 backdrop-blur-sm border border-blue-200/50 rounded-xl p-8 lg:p-12 mb-8">
+                            <h4 className="text-2xl lg:text-3xl font-bold text-blue-800 mb-8 lg:mb-10 text-center tracking-tight">
                                 Our Process:
                             </h4>
                             <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/assesment.png"
+                                            src="/icons/assesment1.png"
                                             alt="Growth Icon"
                                             width={75}
                                             height={75}
@@ -509,12 +548,12 @@ const BadgerStateSolutions = () => {
 
                                         </Image>
                                     </div>
-                                    <h5 className="text-xl lg:text-2xl font-bold text-amber-800 mb-2 tracking-tight">Assessment & Planning</h5>
+                                    <h5 className="text-xl lg:text-2xl font-bold text-blue-800 mb-2 tracking-tight">Assessment & Planning</h5>
                                 </div>
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/implementation.png"
+                                            src="/icons/return.png"
                                             alt="Growth Icon"
                                             width={75}
                                             height={75}
@@ -522,12 +561,12 @@ const BadgerStateSolutions = () => {
 
                                         </Image>
                                     </div>
-                                    <h5 className="text-xl lg:text-2xl font-bold text-amber-800 mb-2 tracking-tight">Implementation</h5>
+                                    <h5 className="text-xl lg:text-2xl font-bold text-blue-800 mb-2 tracking-tight">Implementation</h5>
                                 </div>
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/rising.png"
+                                            src="/icons/statistic.png"
                                             alt="Growth Icon"
                                             width={75}
                                             height={75}
@@ -535,7 +574,7 @@ const BadgerStateSolutions = () => {
 
                                         </Image>
                                     </div>
-                                    <h5 className="text-xl lg:text-2xl font-bold text-amber-800 mb-2 tracking-tight">Monitoring & Optimization</h5>
+                                    <h5 className="text-xl lg:text-2xl font-bold text-blue-800 mb-2 tracking-tight">Monitoring & Optimization</h5>
                                 </div>
                             </div>
                         </div>
@@ -553,10 +592,10 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="max-w-4xl mx-auto text-center">
-                            <p className="text-2xl text-amber-700 mb-6 leading-relaxed">
+                            <p className="text-2xl text-blue-700 mb-6 leading-relaxed font-light">
                                 We begin with a thorough understanding of your business, challenges, and goals, then develop customized strategies that align with your vision.
                             </p>
-                            <p className="text-2xl text-amber-700 leading-relaxed">
+                            <p className="text-2xl text-blue-700 leading-relaxed font-light">
                                 Our collaborative approach ensures that you&apos;re involved every step of the way, from initial planning to final implementation and ongoing support.
                             </p>
                         </div>
@@ -565,7 +604,7 @@ const BadgerStateSolutions = () => {
             </section>
 
             {/* Why Choose Us Section */}
-            <section className="py-24 sm:py-32 bg-gradient-to-b from-white via-amber-50/10 to-white">
+            <section className="py-24 sm:py-32 bg-gradient-to-b from-white via-blue-50/10 to-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <AnimatedContent
                         distance={100}
@@ -579,11 +618,11 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="text-center mb-16 sm:mb-20">
-                            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-amber-900 mb-6 tracking-tight">
-                                <span className="bg-gradient-to-r from-amber-800 via-amber-600 to-yellow-600 bg-clip-text text-transparent">Why Choose</span> Us?
+                            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-blue-900 mb-6 tracking-tight">
+                                <span className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-600 bg-clip-text text-transparent">Why Choose</span> Us?
                             </h2>
-                            <div className="w-24 h-1 bg-gradient-to-r from-amber-600 to-yellow-600 mx-auto mb-8"></div>
-                            <p className="text-xl sm:text-2xl lg:text-3xl text-amber-700/90 text-center mb-12 max-w-5xl mx-auto leading-relaxed font-light">
+                            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-600 mx-auto mb-8"></div>
+                            <p className="text-xl sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto leading-relaxed font-light">
                                 Discover what sets Badger State Solutions apart as your ideal business partner.
                             </p>
                         </div>
@@ -601,12 +640,12 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="bg-gradient-to-r from-blue-100/60 to-blue-200/40 backdrop-blur-sm border border-blue-300/60 rounded-2xl p-10 lg:p-12">
-                            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold  text-amber-700/90 mb-12 text-center tracking-tight">Why Choose Us?</h3>
+                            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold  text-blue-700/90 mb-12 text-center tracking-tight">Why Choose Us?</h3>
                             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/winner.png"
+                                            src="/icons/ribbon.png"
                                             alt="Industry Experience Icon"
                                             width={75}
                                             height={75}
@@ -614,12 +653,12 @@ const BadgerStateSolutions = () => {
 
                                         </Image>
                                     </div>
-                                    <p className="text-lg lg:text-xl  text-amber-700/90 font-bold leading-relaxed">Industry experience across diverse sectors</p>
+                                    <p className="text-lg lg:text-xl  text-blue-700/90 font-bold leading-relaxed">Industry experience across diverse sectors</p>
                                 </div>
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/strategy.png"
+                                            src="/icons/target1.png"
                                             alt="Strategy Icon"
                                             width={75}
                                             height={75}
@@ -627,12 +666,12 @@ const BadgerStateSolutions = () => {
 
                                         </Image>
                                     </div>
-                                    <p className="text-lg lg:text-xl  text-amber-700/90 font-bold leading-relaxed">Customized strategies for your unique challenges</p>
+                                    <p className="text-lg lg:text-xl  text-blue-700/90 font-bold leading-relaxed">Customized strategies for your unique challenges</p>
                                 </div>
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/handshake.png"
+                                            src="/icons/commitment.png"
                                             alt="Support Icon"
                                             width={75}
                                             height={75}
@@ -640,12 +679,12 @@ const BadgerStateSolutions = () => {
 
                                         </Image>
                                     </div>
-                                    <p className="text-lg lg:text-xl  text-amber-700/90 font-bold leading-relaxed">Hands-on support, not just advice</p>
+                                    <p className="text-lg lg:text-xl  text-blue-700/90 font-bold leading-relaxed">Hands-on support, not just advice</p>
                                 </div>
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-5xl lg:text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/histogram.png"
+                                            src="/icons/analytics.png"
                                             alt="Track Record Icon"
                                             width={75}
                                             height={75}
@@ -653,7 +692,7 @@ const BadgerStateSolutions = () => {
 
                                         </Image>
                                     </div>
-                                    <p className="text-lg lg:text-xl  text-amber-700/90 font-bold leading-relaxed">Proven track record of delivering results</p>
+                                    <p className="text-lg lg:text-xl  text-blue-700/90 font-bold leading-relaxed">Proven track record of delivering results</p>
                                 </div>
                             </div>
                         </div>
@@ -743,7 +782,7 @@ const BadgerStateSolutions = () => {
             </section>
 
             {/* Modern CTA Section */}
-            <section className="py-24 sm:py-32 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden">
+            <section id="start" className="py-24 sm:py-32 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden">
                 <div className="absolute inset-0 mesh-gradient opacity-20"></div>
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <AnimatedContent
@@ -789,23 +828,58 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center">
-                            <button
-                                className="group relative overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white px-10 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 rounded-2xl text-lg sm:text-xl lg:text-2xl font-bold hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-105 transition-all duration-300 border border-blue-500/20 backdrop-blur-sm w-full sm:w-auto tracking-tight"
+                            <a
+                                href="mailto:info@badgerstatesolutions.com"
+                                className="w-full sm:w-auto"
                             >
-                                <span className="relative z-10">🚀 Schedule Consultation</span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            </button>
-                            <button className="group relative overflow-hidden bg-white/10 backdrop-blur-md text-white px-10 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 rounded-2xl text-lg sm:text-xl lg:text-2xl font-bold hover:shadow-2xl hover:shadow-white/10 hover:scale-105 transition-all duration-300 border border-white/20 hover:bg-white/20 w-full sm:w-auto tracking-tight">
-                                <span className="relative z-10">📖 Learn More</span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            </button>
+                                <button
+                                    type="button"
+                                    className="flex group relative overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white px-10 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 rounded-2xl text-lg sm:text-xl lg:text-2xl font-bold hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-105 transition-all duration-300 border border-blue-500/20 backdrop-blur-sm w-full sm:w-auto tracking-tight"
+                                >
+                                    <Image
+                                        src="/icons/startup.png"
+                                        alt="Mail Icon"
+                                        width={16}
+                                        height={16}
+                                        className="w-10 h-10 relative z-10 mr-4"
+                                    />
+                                    <span className="relative z-10">
+                                        Schedule Consultation
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </button>
+                            </a>
+                            <a
+                                href="mailto:info@badgerstatesolutions.com"
+                                className="w-full sm:w-auto"
+                            >
+
+                                <button className="flex group relative overflow-hidden bg-white/10 backdrop-blur-md text-white px-10 sm:px-12 lg:px-16 py-4 sm:py-5 lg:py-6 rounded-2xl text-lg sm:text-xl lg:text-2xl font-bold hover:shadow-2xl hover:shadow-white/10 hover:scale-105 transition-all duration-300 border border-white/20 hover:bg-white/20 w-full sm:w-auto tracking-tight">
+                                    <Image
+                                        src="/icons/learning.png"
+                                        alt="Mail Icon"
+                                        width={16}
+                                        height={16}
+                                        className="w-10 h-10 mr-4 z-10">
+
+                                    </Image>
+                                    <span className="flex space-x-2 items-center justify-center relative z-10">
+
+
+                                        Learn More</span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </button>
+                            </a>
                         </div>
                     </AnimatedContent>
                 </div>
             </section>
 
             {/* Simple Copyright Footer */}
-            <footer className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-8 lg:py-10">
+            <footer
+                ref={footerRef}
+                className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-8 lg:py-10"
+            >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <p className="text-base lg:text-lg text-blue-100/90 font-light tracking-wide">
                         &copy; 2025 Badger State Solutions. All rights reserved.
@@ -816,5 +890,20 @@ const BadgerStateSolutions = () => {
         </div>
     );
 };
+
+// Add these styles to your global CSS or module CSS
+/*
+.header-link {
+    transition: color 0.3s;
+}
+.bg-blue-900\/95 .header-link,
+.bg-blue-900\/95 .header-text {
+    color: #fff !important;
+}
+.bg-white\/30 .header-link,
+.bg-white\/30 .header-text {
+    color: #1e3a8a !important;
+}
+*/
 
 export default BadgerStateSolutions;
