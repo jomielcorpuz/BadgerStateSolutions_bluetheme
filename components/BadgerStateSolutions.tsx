@@ -41,17 +41,21 @@ const BadgerStateSolutions = () => {
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-4">
-                        <div className="flex items-center space-x-2">
-                            <Image
-                                src="/logo.svg"
-                                alt="Badger State Solutions Logo"
-                                width={45}
-                                height={45}
-                                className=""
-                            />
-                            <span className="text-2xl font-bold header-text">
-                                Badger State Solutions
-                            </span>
+                        <div className="flex items-center space-x-3">
+                            <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-indigo-600 to-blue-500 rounded-lg flex items-center justify-center">
+                                <Image
+                                    src="logo.svg"
+                                    alt="Badger State Solutions Logo"
+                                    width={45}
+                                    height={45}
+                                    className="mt-2"
+                                />
+                            </div>
+                            <div>
+                                <h1 className="text-lg lg:text-xl text-blue-600 font-bold text-slate-900 tracking-tight group-hover:text-indigo-600 transition-colors duration-300">
+                                    Badger State Solutions
+                                </h1>
+                            </div>
                         </div>
                         <nav className="hidden md:flex items-center space-x-8">
                             <a
