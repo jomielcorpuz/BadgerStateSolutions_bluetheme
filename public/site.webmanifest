@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "BadgerStateSolutions",
+  "short_name": "BadgerSolutions",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
