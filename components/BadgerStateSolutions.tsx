@@ -330,12 +330,13 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="max-w-5xl mx-auto text-center">
-                            <p className="text-2xl text-blue-700 mb-6 leading-relaxed font-light">
-                                With tailored strategies, operational support, and expert guidance, we help businesses across a wide range of industries enhance efficiency, navigate challenges, and scale with
+                            <p className="text-lg sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto font-light leading-relaxed">
+                                With tailored strategies, operational support, and expert guidance, we help businesses across a wide range of industries enhance efficiency, <br></br>
+                                navigate challenges, and scale with
                                 <br></br>
                                 confidence.
                             </p>
-                            <p className="text-2xl text-blue-700 leading-relaxed font-light">
+                            <p className="text-lg sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto font-light leading-relaxed">
                                 Whether you&apos;re a small startup or an established enterprise, Badger State Solutions provides the insight and support you need to succeed.
                             </p>
                         </div>
@@ -570,8 +571,8 @@ const BadgerStateSolutions = () => {
                                 <div className="group text-center hover:-translate-y-1 transition-transform duration-300">
                                     <div className="flex justify-center items-center text-4xl lg:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                         <Image
-                                            src="/icons/statistic.png"
-                                            alt="Growth Icon"
+                                            src="/icons/chartrise.png"
+                                            alt="Optimization Icon"
                                             width={75}
                                             height={75}
                                             className="w-18 h-18">
@@ -596,10 +597,10 @@ const BadgerStateSolutions = () => {
                         enableScrollUp={true}
                     >
                         <div className="max-w-4xl mx-auto text-center">
-                            <p className="text-2xl text-blue-700 mb-6 leading-relaxed font-light">
+                            <p className="text-lg sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto font-light leading-relaxed">
                                 We begin with a thorough understanding of your business, challenges, and goals, then develop customized strategies that align with your vision.
                             </p>
-                            <p className="text-2xl text-blue-700 leading-relaxed font-light">
+                            <p className="text-lg sm:text-2xl lg:text-3xl text-blue-700/90 text-center mb-12 max-w-5xl mx-auto font-light leading-relaxed">
                                 Our collaborative approach ensures that you&apos;re involved every step of the way, from initial planning to final implementation and ongoing support.
                             </p>
                         </div>
@@ -816,7 +817,7 @@ const BadgerStateSolutions = () => {
                         delay={220}
                         enableScrollUp={true}
                     >
-                        <p className="text-xl sm:text-2xl lg:text-3xl text-blue-100/90 mb-12 sm:mb-14 lg:mb-16 max-w-4xl mx-auto leading-relaxed font-light">
+                        <p className="text-lg sm:text-2xl lg:text-3xl text-blue-100/90 mb-12 sm:mb-14 lg:mb-16 max-w-4xl mx-auto leading-relaxed font-light">
                             Partner with Badger State Solutions to unlock your organization&apos;s potential and achieve sustainable growth
                         </p>
                     </AnimatedContent>
