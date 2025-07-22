@@ -8,95 +8,143 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   
-  /* Luxury Typography Shadows */
-  --luxury-text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
-  --luxury-text-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1);
-  --luxury-text-shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.18), 0 6px 12px rgba(0, 0, 0, 0.12);
+  /* Modern Typography Shadows */
+  --modern-text-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --modern-text-shadow: 0 4px 6px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --modern-text-shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  --modern-text-shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.1);
+  
   @keyframes aurora {
   0% {
     background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+    transform: scale(1);
     }
   25% {
     background-position: 50% 100%;
-    transform: rotate(5deg) scale(1.1);
+    transform: scale(1.02);
     }
   50% {
     background-position: 100% 50%;
-    transform: rotate(-3deg) scale(0.95);
+    transform: scale(1);
     }
   75% {
     background-position: 50% 0%;
-    transform: rotate(3deg) scale(1.05);
+    transform: scale(1.02);
     }
   100% {
     background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+    transform: scale(1);
     }
   }
   
-  /* Luxury Hero Typography */
-  .luxury-hero {
-    text-shadow: var(--luxury-text-shadow-xl);
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.2), 0 0 15px rgba(59, 130, 246, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.2);
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.4), 0 0 16px rgba(59, 130, 246, 0.2);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.6), 0 0 25px rgba(59, 130, 246, 0.3), 0 0 35px rgba(59, 130, 246, 0.1);
+      transform: scale(1.02);
+    }
+  }
+  
+  .glow-animation {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  .pulse-glow-animation {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  /* Modern Typography Styles */
+  .modern-hero {
+    text-shadow: var(--modern-text-shadow-lg);
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
+    letter-spacing: -0.03em;
   }
   
-  .luxury-text {
-     text-shadow: var(--luxury-text-shadow);
-     color: #1a1a1a;
-     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  .modern-text {
+    text-shadow: var(--modern-text-shadow-sm);
+    color: #1e3a8a;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.04));
+    letter-spacing: -0.01em;
   }
   
-  /* Modern Hero Typography */
-  .modern-hero-text {
-    font-weight: 800;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-    letter-spacing: -0.05em;
+  /* Clean Hero Typography */
+  .clean-hero-text {
+    font-weight: 700;
+    text-shadow: var(--modern-text-shadow);
+    letter-spacing: -0.03em;
     position: relative;
+    transition: all 0.3s ease;
   }
   
-  .modern-hero-text::before {
+  .clean-hero-text::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.08), rgba(96, 165, 250, 0.08));
     border-radius: 8px;
     z-index: -1;
-    filter: blur(20px);
+    filter: blur(16px);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
   
-  .modern-hero-text:hover::before {
+  .clean-hero-text:hover::before {
     opacity: 1;
+  }
+  
+  /* Card and Section Styles */
+  .modern-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+  }
+  
+  .modern-card:hover {
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.1), 0 2px 8px rgba(59, 130, 246, 0.06);
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.2);
   }
 }
 
 @layer base {
   :root {
-    /* Badger-inspired Color Scheme: Charcoal, Beige, and Golden */
-    --background: 45 15% 96%; /* Warm off-white background */
-    --foreground: 0 0% 18%; /* Charcoal text */
-    --card: 45 20% 98%; /* Light beige cards */
-    --card-foreground: 0 0% 18%; /* Charcoal card text */
-    --popover: 45 20% 98%; /* Light beige popover */
-    --popover-foreground: 0 0% 18%; /* Charcoal popover text */
-    --primary: 45 65% 55%; /* Golden brown primary */
-    --primary-foreground: 45 15% 96%; /* Light text on golden */
-    --secondary: 35 25% 85%; /* Light tan secondary */
-    --secondary-foreground: 0 0% 18%; /* Charcoal text on tan */
-    --muted: 35 20% 90%; /* Very light beige muted */
-    --muted-foreground: 35 15% 40%; /* Medium brown muted text */
-    --accent: 42 75% 65%; /* Warm golden accent */
-    --accent-foreground: 0 0% 18%; /* Charcoal text on golden */
+    /* Modern Blue Color Scheme */
+    --background: 210 20% 98%; /* Clean white background with slight blue tint */
+    --foreground: 215 25% 27%; /* Deep blue-gray text for better readability */
+    --card: 210 20% 99%; /* Almost white cards with subtle blue tint */
+    --card-foreground: 215 25% 27%; /* Deep blue-gray card text */
+    --popover: 210 20% 99%; /* Almost white popover with subtle blue tint */
+    --popover-foreground: 215 25% 27%; /* Deep blue-gray popover text */
+    --primary: 214 100% 50%; /* Vibrant blue primary */
+    --primary-foreground: 210 20% 98%; /* White text on blue */
+    --secondary: 213 60% 95%; /* Very light blue secondary */
+    --secondary-foreground: 215 25% 27%; /* Deep blue-gray text on light blue */
+    --muted: 213 50% 96%; /* Subtle light blue muted */
+    --muted-foreground: 215 25% 40%; /* Medium blue-gray muted text */
+    --accent: 210 100% 65%; /* Bright blue accent */
+    --accent-foreground: 210 20% 98%; /* White text on bright blue */
     --destructive: 0 84.2% 60.2%; /* Red for destructive actions */
     --destructive-foreground: 0 0% 98%; /* White text on red */
     --border: 35 20% 82%; /* Light tan border */
@@ -111,31 +159,31 @@
   }
 
   .dark {
-    /* Dark badger theme with charcoal and warm accents */
-    --background: 0 0% 8%; /* Deep charcoal background */
-    --foreground: 45 15% 92%; /* Warm off-white text */
-    --card: 0 0% 12%; /* Dark charcoal cards */
-    --card-foreground: 45 15% 92%; /* Warm off-white card text */
-    --popover: 0 0% 12%; /* Dark charcoal popover */
-    --popover-foreground: 45 15% 92%; /* Warm off-white popover text */
-    --primary: 42 75% 65%; /* Bright golden primary */
-    --primary-foreground: 0 0% 8%; /* Dark text on golden */
-    --secondary: 35 15% 18%; /* Dark brown secondary */
-    --secondary-foreground: 45 15% 92%; /* Light text on dark brown */
-    --muted: 35 10% 20%; /* Dark muted brown */
-    --muted-foreground: 35 20% 65%; /* Light brown muted text */
-    --accent: 45 65% 55%; /* Golden brown accent */
-    --accent-foreground: 45 15% 96%; /* Light text on golden accent */
-    --destructive: 0 62.8% 30.6%; /* Dark red for destructive actions */
-    --destructive-foreground: 0 0% 98%; /* White text on red */
-    --border: 35 10% 22%; /* Dark brown border */
-    --input: 35 8% 18%; /* Dark brown input background */
-    --ring: 42 75% 65%; /* Bright golden focus ring */
-    --chart-1: 42 75% 65%; /* Bright golden */
-    --chart-2: 35 45% 55%; /* Medium brown */
-    --chart-3: 45 65% 55%; /* Golden brown */
-    --chart-4: 35 35% 70%; /* Light brown */
-    --chart-5: 45 55% 75%; /* Light golden */
+    /* Modern Dark Blue Theme */
+    --background: 220 20% 10%; /* Deep blue-gray background */
+    --foreground: 210 15% 90%; /* Light blue-tinted text */
+    --card: 220 20% 13%; /* Slightly lighter blue-gray cards */
+    --card-foreground: 210 15% 90%; /* Light blue-tinted card text */
+    --popover: 220 20% 13%; /* Slightly lighter blue-gray popover */
+    --popover-foreground: 210 15% 90%; /* Light blue-tinted popover text */
+    --primary: 214 100% 60%; /* Vibrant blue primary, slightly brighter for dark mode */
+    --primary-foreground: 210 15% 98%; /* White text on blue */
+    --secondary: 215 30% 22%; /* Dark blue secondary */
+    --secondary-foreground: 210 15% 90%; /* Light text on dark blue */
+    --muted: 215 25% 18%; /* Dark muted blue */
+    --muted-foreground: 210 15% 70%; /* Light blue-gray muted text */
+    --accent: 210 100% 60%; /* Bright blue accent */
+    --accent-foreground: 210 15% 98%; /* White text on bright blue */
+    --destructive: 0 70% 50%; /* Brighter red for dark mode visibility */
+    --destructive-foreground: 210 15% 98%; /* White text on red */
+    --border: 215 25% 22%; /* Dark blue border */
+    --input: 215 25% 18%; /* Dark blue input background */
+    --ring: 214 100% 60%; /* Vibrant blue focus ring */
+    --chart-1: 214 100% 60%; /* Vibrant blue */
+    --chart-2: 210 90% 70%; /* Light blue */
+    --chart-3: 215 80% 50%; /* Medium blue */
+    --chart-4: 220 70% 60%; /* Blue-purple */
+    --chart-5: 200 90% 60%; /* Cyan-blue */
   }
   .theme {
     --animate-aurora: aurora 8s ease-in-out infinite alternate;

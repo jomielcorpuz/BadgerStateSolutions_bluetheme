@@ -10,16 +10,44 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        'fade-down': 'fadeDown .7s ease-out',
+        'fade-down': 'fadeDown .5s ease-out',
+        'fade-up': 'fadeUp .5s ease-out',
+        'fade-in': 'fadeIn .4s ease-out',
+        'slide-in-right': 'slideInRight .5s ease-out',
+        'slide-in-left': 'slideInLeft .5s ease-out',
+        'scale-in': 'scaleIn .4s ease-out',
         scroll: 'scroll 40s linear infinite',
-        float: 'float 6s ease-in-out infinite',
+        float: 'float 8s ease-in-out infinite',
+        'subtle-float': 'subtleFloat 6s ease-in-out infinite',
         'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
         gradient: 'gradientShift 8s ease infinite',
+        'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
+        shimmer: 'shimmer 2s linear infinite',
       },
       keyframes: {
         fadeDown: {
           '0%': { opacity: 0, transform: 'translateY(-10px)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        fadeUp: {
+          '0%': { opacity: 0, transform: 'translateY(10px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+        slideInRight: {
+          '0%': { opacity: 0, transform: 'translateX(-20px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
+        },
+        slideInLeft: {
+          '0%': { opacity: 0, transform: 'translateX(20px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
+        },
+        scaleIn: {
+          '0%': { opacity: 0, transform: 'scale(0.95)' },
+          '100%': { opacity: 1, transform: 'scale(1)' },
         },
         scroll: {
           '0%': { transform: 'translateX(0)' },
@@ -27,19 +55,31 @@ module.exports = {
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-15px)' },
+        },
+        subtleFloat: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-8px)' },
         },
         pulseGlow: {
           '0%, 100%': {
-            boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)',
+            boxShadow: '0 0 15px rgba(59, 130, 246, 0.2)',
           },
           '50%': {
-            boxShadow: '0 0 40px rgba(59, 130, 246, 0.6)',
+            boxShadow: '0 0 30px rgba(59, 130, 246, 0.4)',
           },
         },
         gradientShift: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
+        },
+        bounceSubtle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         },
       },
       fontFamily: {
